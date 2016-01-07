@@ -1,12 +1,20 @@
 g = love.graphics
 t = 0
 positions = {}
-local font, sfx
+local font, sfx, save
 
 love.load = () ->
   font = g.newImageFont 'images/font1.png', " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,!?-+/():;%&`'*#=[]\""
   g.setFont font
   sfx = love.audio.newSource 'sounds/kick.wav', 'static'
+  
+  save  = love.filesystem.newFile 'data.txt'
+  save\open 'r'
+  data = save\read!
+  print 'data:' .. data
+  --save\open 'w'
+  --save\write 'hello world'
+  save\close!
 
 love.update = (dt) ->
   t += dt

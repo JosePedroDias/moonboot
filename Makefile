@@ -23,5 +23,5 @@ dist: moon
 	@cd src && zip -9 -q -r ../dist/$(gamename) . && cd ..
 	@cd assets && zip -9 -q -r ../dist/$(gamename) . && cd ..
 
-run-dist:
+run-dist: dist
 	open dist/$(gamename)
