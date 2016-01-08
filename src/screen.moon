@@ -1,3 +1,10 @@
+-- maximizes the screen to the dimensions given in setSize's _w and _h
+-- use getHighestResolution to obtain values to put in setSize's _W and _H
+-- setSize is expected to be called once
+-- in the love.draw function, drawing calls should be placed between
+-- startDraw and endDraw calls
+-- use coords to map screen size to desired screen size
+
 lg = love.graphics
 lw = love.window
 local w, h, W, H
@@ -13,7 +20,7 @@ getHighestResolution = () ->
             wi = m.width
             hi = m.height
             area = areaT
-    return wi, hi
+    wi, hi
 
 setSize = (_W, _H, _w, _h, fullscreen=true) ->
     w, h = _w, _h
@@ -46,12 +53,12 @@ endDraw = () ->
 coords = (_x, _y) ->
     _x = (_x - x) / scale
     _y = (_y - y) / scale
-    return _x, _y
+    _x, _y
 
-return {
-    getHighestResolution: getHighestResolution,
-    setSize: setSize,
-    startDraw: startDraw,
-    endDraw: endDraw,
-    coords: coords
+{
+    :getHighestResolution
+    :setSize
+    :startDraw
+    :endDraw
+    :coords
 }

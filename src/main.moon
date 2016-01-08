@@ -1,4 +1,5 @@
 screen = require 'screen'
+mouseAndTouch = require 'mouseAndTouch'
 
 la = love.audio
 le = love.event
@@ -55,13 +56,16 @@ love.draw = () ->
 
 love.keypressed = (k) ->
   if k == 'escape'
-    le.quit()
+    le.quit!
 
 
 
-love.mousepressed = (x, y) ->
-  x, y = screen.coords x, y
+love.pressed = (x, y) ->
   positions[#positions + 1] = {x, y}
   if sfx\isPlaying!
     sfx\stop!
   sfx\play!
+
+
+
+mouseAndTouch love, screen
